@@ -2,7 +2,7 @@
 create schema sales_new;
 go
 create table Employees(
-id int,
+id int ,
 name varchar(50),
 salary decimal
 )
@@ -22,16 +22,18 @@ ProjectName varchar(50)
 )
 --Add a primary key constraint to the "Employees" table for the "ID" column.
 alter table Employees
-add constraint  primarykey_Employees primary key (id)
+alter column id int NOT NULL;
+alter table Employees
+add constraint  primarykey_Employees primary key (id);
 --Add a unique constraint to the "Name" column in the "Employees" table.
 alter table Employees
 add constraint unique_Name unique (Name);
 --Create a table named "Customers" with columns for CustomerID (integer), FirstName (varchar), LastName (varchar), and Email (varchar), and Status (varchar).
 create table Customers_new(
 CustomerID int,
-FirstName varchar,
-LastName varchar,
-Email varchar,
+FirstName varchar(40),
+LastName varchar(40),
+Email varchar(40),
 Status varchar
 )
 --Add a unique constraint to the combination of "FirstName" and "LastName" columns in the "Customers" table.
@@ -46,10 +48,10 @@ TotalAmount decimal
 )
 --Add a check constraint to the "TotalAmount" column in the "Orders" table to ensure that it is greater than zero.
 alter table Orders
-add constraint TotalAmount check(TotalAmount>0)
+add constraint ck_TotalAmount check(TotalAmount > 0)
 --Create a schema named "Sales" and move the "Orders" table into this schema.
 
 alter schema sales_new transfer dbo.orders
 
 --Rename the "Orders" table to "SalesOrders."
-EXEC sp_rename 'Sales.Orders', 'SalesOrders';
+EXEC sp_rename 'sales_new.Orders', 'SalesOrders';
