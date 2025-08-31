@@ -1,5 +1,5 @@
 --Create a table named "Employees" with columns for ID (integer), Name (varchar), and Salary (decimal).
-create schema sales_new;
+create schema sales;
 go
 create table Employees(
 id int ,
@@ -51,8 +51,7 @@ alter table Orders
 add constraint ck_TotalAmount check(TotalAmount > 0)
 --Create a schema named "Sales" and move the "Orders" table into this schema.
 
-alter schema sales_new transfer dbo.orders
+alter schema sales transfer dbo.Orders
 
 --Rename the "Orders" table to "SalesOrders."
-EXEC sp_rename 'sales_new.Orders', 'SalesOrders';
-
+EXEC sp_rename 'sales.Orders', 'SalesOrders';
