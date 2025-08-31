@@ -34,7 +34,7 @@ CustomerID int,
 FirstName varchar(40),
 LastName varchar(40),
 Email varchar(40),
-Status varchar
+Status varchar(40)
 )
 --Add a unique constraint to the combination of "FirstName" and "LastName" columns in the "Customers" table.
 alter table Customers_new
@@ -55,3 +55,4 @@ alter schema sales_new transfer dbo.orders
 
 --Rename the "Orders" table to "SalesOrders."
 EXEC sp_rename 'sales_new.Orders', 'SalesOrders';
+
